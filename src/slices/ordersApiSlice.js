@@ -2,9 +2,9 @@ import { ORDERS_URL, RAZORPAY_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const ordersApiSlice = apiSlice.injectEndpoints({
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     createOrder: builder.mutation({
-      query: order => ({
+      query: (order) => ({
         url: ORDERS_URL,
         method: 'POST',
         body: { ...order }
@@ -12,7 +12,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Order']
     }),
     getOrderDetails: builder.query({
-      query: orderId => ({
+      query: (orderId) => ({
         url: `${ORDERS_URL}/${orderId}`
       }),
       providesTags: ['Order']
@@ -32,7 +32,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Order']
     }),
     updateDeliver: builder.mutation({
-      query: orderId => ({
+      query: (orderId) => ({
         url: `${ORDERS_URL}/${orderId}/deliver`,
         method: 'PUT'
       }),
@@ -51,11 +51,11 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Order']
     }),
     deleteOrder: builder.mutation({
-      query: orderId => ({
+      query: (orderId) => ({
         url: `${ORDERS_URL}/${orderId}`,
         method: 'DELETE'
       }),
-      invalidatesTags: ['Order'],  // Assurez-vous d'invalider le cache des commandes ici
+      invalidatesTags: ['Order']
     })
   })
 });
@@ -68,5 +68,5 @@ export const {
   useGetRazorpayApiKeyQuery,
   useGetMyOrdersQuery,
   useGetOrdersQuery,
-  useDeleteOrderMutation // Vous avez déjà ajouté ce hook pour la suppression
+  useDeleteOrderMutation
 } = ordersApiSlice;
