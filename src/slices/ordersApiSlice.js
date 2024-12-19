@@ -7,7 +7,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: (order) => ({
         url: ORDERS_URL,
         method: 'POST',
-        credentials: 'include'
+        credentials: 'include',
         body: { ...order }
       }),
       invalidatesTags: ['Order']
