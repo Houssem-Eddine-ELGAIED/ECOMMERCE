@@ -58,28 +58,28 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     getUserProfile: builder.query({
       query: async () => ({
-        url: `${USERS_URL}/profile`
+        url: `${USERS_URL}/profile` ,
          credentials: 'include'
       }),
       providesTags: ['User']
     }),
     getUsers: builder.query({
       query: () => ({
-        url: USERS_URL
+        url: USERS_URL ,
          credentials: 'include'
       }),
       providesTags: ['User']
     }),
     admins: builder.query({
       query: () => ({
-        url: `${USERS_URL}/admins`
+        url: `${USERS_URL}/admins` ,
          credentials: 'include'
       }),
       providesTags: ['User']
     }),
     getUserById: builder.query({
       query: userId => ({
-        url: `${USERS_URL}/${userId}`
+        url: `${USERS_URL}/${userId}` ,
          credentials: 'include'
       }),
       providesTags: ['User']
