@@ -9,6 +9,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
 import Meta from '../components/Meta';
+import Cookies from 'js-cookie';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -41,6 +42,8 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password, remember }).unwrap();
+      console.log(res )
+      Cookies.set('jwt', res.token, { expires: 12, secure: false, sameSite: 'None' });
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
       toast.success('Login successful');
