@@ -6,19 +6,22 @@ export const productApiSlice = apiSlice.injectEndpoints({
     getProducts: builder.query({
       query: ({ limit, skip, search }) => ({
         url: PRODUCTS_URL,
-        params: { limit, skip, search }
+        params: { limit, skip, search },
+         credentials: 'include',
       }),
       providesTags: ['Product']
     }),
     getTopProducts: builder.query({
       query: () => ({
-        url: `${PRODUCTS_URL}/top`
+        url: `${PRODUCTS_URL}/top`,
+         credentials: 'include'
       }),
       providesTags: ['Product']
     }),
     getProductDetails: builder.query({
       query: productId => ({
-        url: `${PRODUCTS_URL}/${productId}`
+        url: `${PRODUCTS_URL}/${productId}`,
+         credentials: 'include'
       }),
       providesTags: ['Product']
     }),
@@ -26,7 +29,8 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: productData => ({
         url: PRODUCTS_URL,
         method: 'POST',
-        body: productData
+        body: productData,
+         credentials: 'include'
       }),
       invalidatesTags: ['Product']
     }),
@@ -34,14 +38,16 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: ({ productId, ...productData }) => ({
         url: `${PRODUCTS_URL}/${productId}`,
         method: 'PUT',
-        body: { ...productData }
+        body: { ...productData },
+         credentials: 'include'
       }),
       invalidatesTags: ['Product']
     }),
     deleteProduct: builder.mutation({
       query: productId => ({
         url: `${PRODUCTS_URL}/${productId}`,
-        method: 'DELETE'
+        method: 'DELETE',
+         credentials: 'include'
       }),
       invalidatesTags: ['Product']
     }),
@@ -49,7 +55,8 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: data => ({
         url: UPLOAD_URL,
         method: 'POST',
-        body: data
+        body: data,
+         credentials: 'include'
       }),
       invalidatesTags: ['Product']
     }),
@@ -57,6 +64,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: ({ productId, ...reviewData }) => ({
         url: `${PRODUCTS_URL}/reviews/${productId}`,
         method: 'POST',
+         credentials: 'include',
         body: { ...reviewData }
       }),
       invalidatesTags: ['Product']
