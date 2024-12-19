@@ -43,7 +43,8 @@ const LoginPage = () => {
     try {
       const res = await login({ email, password, remember }).unwrap();
       console.log(res )
-      Cookies.set('jwt', res.token, { expires: 12, secure: false, sameSite: 'None' });
+      Cookies.set('jwt', res.token, { expires: 12, secure: true, sameSite: 'None' });
+      console.log(document.cookie);
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
       toast.success('Login successful');
