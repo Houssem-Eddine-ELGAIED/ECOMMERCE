@@ -7,21 +7,19 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: order => ({
         url: ORDERS_URL,
         method: 'POST',
-        credentials: 'include',
         body: { ...order }
       }),
       invalidatesTags: ['Order']
     }),
     getOrderDetails: builder.query({
       query: orderId => ({
-        credentials: 'include',
         url: `${ORDERS_URL}/${orderId}`
       }),
       providesTags: ['Order']
     }),
     getMyOrders: builder.query({
       query: () => ({
-        credentials: 'include',
+        
         url: `${ORDERS_URL}/my-orders`
 
       }),
