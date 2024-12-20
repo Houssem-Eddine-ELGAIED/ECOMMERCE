@@ -7,21 +7,20 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: ({ limit, skip, search }) => ({
         url: PRODUCTS_URL,
         params: { limit, skip, search },
-         credentials: 'include',
+       
       }),
       providesTags: ['Product']
     }),
     getTopProducts: builder.query({
       query: () => ({
-        url: `${PRODUCTS_URL}/top`,
-         credentials: 'include'
+        url: `${PRODUCTS_URL}/top`
+      
       }),
       providesTags: ['Product']
     }),
     getProductDetails: builder.query({
       query: productId => ({
-        url: `${PRODUCTS_URL}/${productId}`,
-         credentials: 'include'
+        url: `${PRODUCTS_URL}/${productId}`   
       }),
       providesTags: ['Product']
     }),
@@ -29,8 +28,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: productData => ({
         url: PRODUCTS_URL,
         method: 'POST',
-        body: productData,
-         credentials: 'include'
+        body: productData
       }),
       invalidatesTags: ['Product']
     }),
@@ -38,16 +36,16 @@ export const productApiSlice = apiSlice.injectEndpoints({
       query: ({ productId, ...productData }) => ({
         url: `${PRODUCTS_URL}/${productId}`,
         method: 'PUT',
-        body: { ...productData },
-         credentials: 'include'
+        body: { ...productData }
+      
       }),
       invalidatesTags: ['Product']
     }),
     deleteProduct: builder.mutation({
       query: productId => ({
         url: `${PRODUCTS_URL}/${productId}`,
-        method: 'DELETE',
-         credentials: 'include'
+        method: 'DELETE'
+        
       }),
       invalidatesTags: ['Product']
     }),
@@ -56,15 +54,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
         url: UPLOAD_URL,
         method: 'POST',
         body: data,
-         credentials: 'include'
+         
       }),
       invalidatesTags: ['Product']
     }),
     createProductReview: builder.mutation({
       query: ({ productId, ...reviewData }) => ({
         url: `${PRODUCTS_URL}/reviews/${productId}`,
-        method: 'POST',
-         credentials: 'include',
+        method: 'POST'
+        
         body: { ...reviewData }
       }),
       invalidatesTags: ['Product']
