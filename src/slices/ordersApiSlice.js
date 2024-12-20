@@ -2,9 +2,9 @@ import { ORDERS_URL, RAZORPAY_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const ordersApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     createOrder: builder.mutation({
-      query: (order) => ({
+      query: order => ({
         url: ORDERS_URL,
         method: 'POST',
         credentials: 'include',
@@ -13,16 +13,17 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: ['Order']
     }),
     getOrderDetails: builder.query({
-      query: (orderId) => ({
-        url: `${ORDERS_URL}/${orderId}`,
-        credentials: 'include'
+      query: orderId => ({
+        credentials: 'include',
+        url: `${ORDERS_URL}/${orderId}`
       }),
       providesTags: ['Order']
     }),
     getMyOrders: builder.query({
       query: () => ({
-        url: `${ORDERS_URL}/my-orders`,
-        credentials: 'include'
+        credentials: 'include',
+        url: `${ORDERS_URL}/my-orders`
+
       }),
       providesTags: ['Order']
     }),
@@ -30,40 +31,35 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
       query: ({ orderId, details }) => ({
         url: `${ORDERS_URL}/${orderId}/pay`,
         method: 'PUT',
-        body: { ...details },
-        credentials: 'include'
+        body: { ...details }
       }),
       invalidatesTags: ['Order']
     }),
     updateDeliver: builder.mutation({
-      query: (orderId) => ({
+      query: orderId => ({
         url: `${ORDERS_URL}/${orderId}/deliver`,
-        method: 'PUT',
-        credentials: 'include'
+        method: 'PUT'
       }),
       invalidatesTags: ['Order']
     }),
     getRazorpayApiKey: builder.query({
       query: () => ({
-        url: `${RAZORPAY_URL}/razorpay/config`,
-        credentials: 'include'
+        url: `${RAZORPAY_URL}/razorpay/config`
       }),
       providesTags: ['Order']
     }),
     getOrders: builder.query({
       query: () => ({
-        url: ORDERS_URL  ,
-        credentials: 'include'
+        url: ORDERS_URL
       }),
       providesTags: ['Order']
     }),
     deleteOrder: builder.mutation({
-      query: (orderId) => ({
+      query: orderId => ({
         url: `${ORDERS_URL}/${orderId}`,
-        method: 'DELETE' ,
-        credentials: 'include'
+        method: 'DELETE'
       }),
-      invalidatesTags: ['Order']
+      invalidatesTags: ['Order'],  // Assurez-vous d'invalider le cache des commandes ici
     })
   })
 });
@@ -76,5 +72,5 @@ export const {
   useGetRazorpayApiKeyQuery,
   useGetMyOrdersQuery,
   useGetOrdersQuery,
-  useDeleteOrderMutation
+  useDeleteOrderMutation // Vous avez déjà ajouté ce hook pour la suppression
 } = ordersApiSlice;
