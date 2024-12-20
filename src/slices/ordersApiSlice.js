@@ -22,7 +22,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         
         url: `${ORDERS_URL}/my-orders`
 
-      }),
+       }),
       providesTags: ['Order']
     }),
     payOrder: builder.mutation({
@@ -62,7 +62,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
   })
 });
 
-export const {
+export const {setCredentials,
   useGetOrderDetailsQuery,
   useCreateOrderMutation,
   usePayOrderMutation,
@@ -70,5 +70,5 @@ export const {
   useGetRazorpayApiKeyQuery,
   useGetMyOrdersQuery,
   useGetOrdersQuery,
-  useDeleteOrderMutation // Vous avez déjà ajouté ce hook pour la suppression
-} = ordersApiSlice;
+  useDeleteOrderMutation,  // Vous avez déjà ajouté ce hook pour la suppression
+} = ordersApiSlice.actions;
