@@ -62,7 +62,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
   })
 });
 
-export const {setCredentials,
+export const {
   useGetOrderDetailsQuery,
   useCreateOrderMutation,
   usePayOrderMutation,
@@ -71,4 +71,4 @@ export const {setCredentials,
   useGetMyOrdersQuery,
   useGetOrdersQuery,
   useDeleteOrderMutation,  // Vous avez déjà ajouté ce hook pour la suppression
-} = ordersApiSlice.actions;
+} = ordersApiSlice ;
